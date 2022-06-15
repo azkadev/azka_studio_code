@@ -1,6 +1,7 @@
+import 'dart:io';
+
 import 'package:any_syntax_highlighter/any_syntax_highlighter.dart';
 import 'package:flutter/material.dart';
-// ignore_for_file: unused_local_variable, duplicate_ignore
 
 import 'dart:math';
 import 'package:simulate/simulate.dart';
@@ -23,14 +24,12 @@ class MyApp extends State<App> {
   void initState() {
     super.initState();
     setState(() {
-      // ignore: unused_local_variable
       var quotes = ["hay kamu", "hay aku"];
       quote = quotes[Random().nextInt(quotes.length)];
     });
   }
 
   @override
-  // ignore: duplicate_ignore, duplicate_ignore
   Widget build(BuildContext context) {
     List menuTopBar = ["File", "Edit", "Selection", "View", "Go", "Run", "Terminal", "help"];
     List sideMenuBar = [Iconsax.search_status, Iconsax.folder, Iconsax.box];
@@ -127,55 +126,11 @@ class MyApp extends State<App> {
                 LayoutBuilder(builder: (BuildContext ctx, BoxConstraints constrains) {
                   print(constrains.maxWidth);
                   // ignore_for_file: unused_local_variable, duplicate_ignore
-                  var text = """
-                  import 'dart:math';
-                  import 'package:flutter/material.dart';
-                  import 'package:flutter/foundation.dart';
-                  
-                  void main() {
-                    runApp(
-                      const MaterialApp(
-                        debugShowCheckedModeBanner: true,
-                        title: "Azka Dev",
-                        home: App(),
-                      ),
-                    );
+                  var text = """""";
+                  var file = File("/home/hexaminate/Documents/HEXAMINATE/app/azka_studio_code/lib/main.dart");
+                  if (file.existsSync()) {
+                    text = file.readAsStringSync();
                   }
-                  
-                  class App extends StatefulWidget {
-                    const App({Key? key}) : super(key: key);
-                    @override
-                    MyApp createState() => MyApp();
-                  }
-                  
-                  class MyApp extends State<App> {
-                    late String quote;
-                    @override
-                    void initState() {
-                      super.initState();
-                      setState(() {
-                        // ignore: unused_local_variable
-                        var quotes = ["hay kamu", "hay aku"];
-                        quote = quotes[Random().nextInt(quotes.length)];
-                      });
-                    }
-                  
-                    @override
-                    // ignore: duplicate_ignore, duplicate_ignore
-                    Widget build(BuildContext context) {
-                      final mediaQuery = MediaQuery.of(context);
-                      // ignore: unused_local_variable
-                      final getHeight = mediaQuery.size.height;
-                      final getWidth = mediaQuery.size.width;
-                      return MaterialApp(
-                        debugShowCheckedModeBanner: true,
-                        title: "Home",
-                        home: Center(
-                          child: Text("quote: ${quote.toString()}"),
-                        ),
-                      );
-                    }
-                  }""";
                   var getNumbers = [];
                   List array = text.split("\n");
                   for (var i = 0; i < array.length; i++) {
@@ -205,68 +160,33 @@ class MyApp extends State<App> {
                               constraints: BoxConstraints(minHeight: MediaQuery.of(ctx).size.height, minWidth: MediaQuery.of(ctx).size.width - 44),
                               child: Stack(
                                 children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                  Row(
                                     children: [
-                                      ...array.map((e) {
-                                        // return HighlightView(
-                                        //   // The original code to be highlighted
-                                        //   e.toString(),
-
-                                        //   // Specify language
-                                        //   // It is recommended to give it a value for performance
-                                        //   language: 'dart',
-
-                                        //   // Specify padding
-                                        //   padding: EdgeInsets.all(12),
-
-                                        //   // Specify text style
-                                        //   textStyle: TextStyle(
-                                        //     fontFamily: 'My awesome monospace font',
-                                        //     fontSize: 16,
-                                        //   ),
-                                        // );
-                                        return AnySyntaxHighlighter(
-                                          e.toString(),
-                                          padding: 0,
-                                          isSelectableText: true,
-                                        );
-                                        return Text(
-                                          e.toString(),
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        );
-                                      }).toList(),
-                                    ],
-                                  ),
-                                  Positioned(
-                                    left: 0,
-                                    child: Container(
-                                      padding: EdgeInsets.symmetric(horizontal: 10),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          ...getNumbers.map((e) {
-                                            return Text(
-                                              e.toString(),
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                              ),
-                                            );
-                                          }).toList()
-                                        ],
+                                      Container(
+                                        padding: EdgeInsets.symmetric(horizontal: 10),
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            ...getNumbers.map((e) {
+                                              var getNumber = "";
+                                              if (e.toString().length == 1) {
+                                                getNumber = "  ${e.toString()}";
+                                              } else {
+                                                getNumber = e.toString();
+                                              }
+                                              return Text(
+                                                getNumber,
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                ),
+                                                textAlign: TextAlign.right,
+                                              );
+                                            }).toList()
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    right: 0,
-                                    child: Container(
-                                      height: MediaQuery.of(context).size.height,
-                                      width: 100,
-                                      child: Column(
+                                      Column(
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
@@ -288,12 +208,36 @@ class MyApp extends State<App> {
                                             //     fontSize: 16,
                                             //   ),
                                             // );
+                                            return AnySyntaxHighlighter(
+                                              e.toString(),
+                                              padding: 0,
+                                              isSelectableText: true,
+                                            );
                                             return Text(
                                               e.toString(),
                                               style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 3
                                               ),
+                                            );
+                                          }).toList(),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Positioned(
+                                    right: 0,
+                                    child: Container(
+                                      height: MediaQuery.of(context).size.height,
+                                      width: 100,
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          ...array.map((e) {
+                                          
+                                            return Text(
+                                              e.toString(),
+                                              style: TextStyle(color: Colors.white, fontSize: 3),
                                             );
                                           }).toList(),
                                         ],
