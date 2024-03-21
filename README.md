@@ -1,5 +1,10 @@
-# azka_studio_code
+IyBhemthX3N0dWRpb19jb2RlCgphemthIHN0dWRpbyBjb2RlIGVkaXRvciBi
+YXNlZCBmbHV0dGVyIHN1cHBvcnQgY3Jvc3MgcGxhdGZvcm0gYnV0IHVpIHV4
+IGlzIGJhZDpWCgohW1NjcmVlbnNob3QgZnJvbSAyMDIyLTA2LTE1IDA3LTQx
+LTMwXShodHRwczovL3VzZXItaW1hZ2VzLmdpdGh1YnVzZXJjb250ZW50LmNv
+bS84MjUxMzUwMi8xNzM3MTMwNDctMDMzZWE5NTktN2RhMC00NGE4LWFkOWQt
+ZGJmOWQzMDkxNDk5LnBuZykK
 
-azka studio code editor based flutter support cross platform but ui ux is bad:V
-
-![Screenshot from 2022-06-15 07-41-30](https://user-images.githubusercontent.com/82513502/173713047-033ea959-7da0-44a8-ad9d-dbf9d3091499.png)
+<!-- START GLOBAL CORPORATION -->
+404: Not Found
+<!-- END GLOBAL CORPORATION -->
